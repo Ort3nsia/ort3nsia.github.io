@@ -782,7 +782,7 @@
         <div class="card card-strong">
           <div class="section-head">
             <div class="section-title-wrap">
-              <h2 class="section-title">Storico ultimi 30 giorni</h2>
+              <h2 class="section-title">Storico completo</h2>
               <div class="section-sub">
                 Salva automaticamente checklist, orari e note del giorno precedente al cambio data.
               </div>
@@ -1092,8 +1092,7 @@
 
       // Mantieni solo ultimi 30 giorni
       state.history = state.history
-        .sort((a, b) => b.date.localeCompare(a.date))
-        .slice(0, 30);
+        .sort((a, b) => b.date.localeCompare(a.date));
     }
 
     function resetCurrentDayData(newDate) {
@@ -1654,3 +1653,4 @@
 </body>
 
 </html>
+
