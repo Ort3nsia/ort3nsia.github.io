@@ -227,26 +227,26 @@
 
     .chip-row {
       display: flex;
+      flex-wrap: wrap;
       gap: 10px;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      scrollbar-width: none;
-    }
-
-    .chip-row::-webkit-scrollbar {
-      display: none;
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .chip {
-      white-space: nowrap;
+      white-space: normal;
       min-height: 42px;
-      padding: 0 14px;
+      padding: 10px 14px;
       border-radius: 999px;
       background: rgba(140, 115, 88, 0.09);
       color: var(--accent-strong);
       font-weight: 700;
       border: 1px solid transparent;
       transition: var(--transition);
+      max-width: 100%;
+      text-align: center;
+      line-height: 1.2;
     }
 
     .chip.active {
@@ -1652,4 +1652,5 @@
     init();
   </script>
 </body>
+
 </html>
