@@ -193,13 +193,13 @@ const STORAGE_KEYS = {
     };
 
 const THEMES = {
-      salvia: {
-        name: "Salvia",
-        themeColor: "#f7f4ee",
-        iconOuter: "#a8b9a5",
-        iconInner: "#f7f4ee",
-        iconStroke: "#7f9480",
-        iconCheck: "#5f786c"
+      emerald: {
+        name: "Smeraldo",
+        themeColor: "#f2fcf8",
+        iconOuter: "#12b886",
+        iconInner: "#f2fcf8",
+        iconStroke: "#0b8a65",
+        iconCheck: "#0b8a65"
       },
       cipria: {
         name: "Rosa cipria",

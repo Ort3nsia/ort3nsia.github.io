@@ -23,7 +23,7 @@
 
     let currentView = "today";
     let currentSectionFilter = "all";
-    let currentTheme = "salvia";
+    let currentTheme = "emerald";
     let saveToastTimer = null;
 
         // -------------------------------
@@ -52,7 +52,7 @@
       completeAllBtn: document.getElementById("completeAllBtn"),
       resetBtn: document.getElementById("resetBtn"),
       exportBtn: document.getElementById("exportBtn"),
-      themeSalvia: document.getElementById("themeSalvia"),
+      themeEmerald: document.getElementById("themeEmerald"),
       themeCipria: document.getElementById("themeCipria"),
       themeColorMeta: document.getElementById("themeColorMeta")
     };
@@ -120,8 +120,8 @@
     }
 
     function loadTheme() {
-      const storedTheme = loadFromStorage(STORAGE_KEYS.theme, "salvia");
-      currentTheme = THEMES[storedTheme] ? storedTheme : "salvia";
+      const storedTheme = loadFromStorage(STORAGE_KEYS.theme, "emerald");
+      currentTheme = THEMES[storedTheme] ? storedTheme : "emerald";
       applyTheme(false);
     }
 
@@ -131,7 +131,7 @@
     }
 
     function renderThemeOptions() {
-      [elements.themeSalvia, elements.themeCipria].forEach(button => {
+      [elements.themeEmerald, elements.themeCipria].forEach(button => {
         const isActive = button.dataset.theme === currentTheme;
         button.classList.toggle("active", isActive);
         button.setAttribute("aria-checked", String(isActive));
@@ -140,7 +140,7 @@
 
     
 function applyTheme(showToast = false) {
-      if (!THEMES[currentTheme]) currentTheme = "salvia";
+      if (!THEMES[currentTheme]) currentTheme = "emerald";
       document.body.dataset.theme = currentTheme;
       renderThemeOptions();
       if (elements.themeColorMeta) {
@@ -758,8 +758,8 @@ function applyTheme(showToast = false) {
       elements.todayBtn.addEventListener("click", () => setView("today"));
       elements.historyBtn.addEventListener("click", () => setView("history"));
       elements.massageBtn.addEventListener("click", () => setView("massage"));
-      elements.themeSalvia.addEventListener("click", () => {
-        currentTheme = "salvia";
+      elements.themeEmerald.addEventListener("click", () => {
+        currentTheme = "emerald";
         applyTheme(true);
       });
       elements.themeCipria.addEventListener("click", () => {

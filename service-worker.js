@@ -1,4 +1,4 @@
-const CACHE_NAME = 'spa-checklist-v1';
+const CACHE_NAME = 'spa-checklist-v3';
 const APP_SHELL = [
   './',
   './index.html',

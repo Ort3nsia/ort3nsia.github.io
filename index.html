@@ -8,7 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="apple-mobile-web-app-title" content="SPA Checklist" />
-  <meta id="themeColorMeta" name="theme-color" content="#f7f4ee" />
+  <meta id="themeColorMeta" name="theme-color" content="#f2fcf8" />
 
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
@@ -75,7 +75,21 @@
           <div class="hint">Le note vengono salvate automaticamente in locale.</div>
         </section>
 
-       
+        <section class="card install-card" aria-label="Aggiungi alla schermata Home">
+          <div class="section-title-wrap">
+            <h2 class="section-title">Aggiungi alla schermata Home su iPhone</h2>
+            <div class="section-sub">Per usarla come mini app durante il turno.</div>
+          </div>
+          <ol>
+            <li>Apri questa pagina in Safari su iPhone.</li>
+            <li>Tocca il pulsante Condividi.</li>
+            <li>Seleziona <strong>Aggiungi alla schermata Home</strong>.</li>
+            <li>Conferma il nome e premi <strong>Aggiungi</strong>.</li>
+          </ol>
+          <div class="hint">
+            Una volta aggiunta, si apre in modo rapido dalla Home ed è più comoda durante il lavoro.
+          </div>
+        </section>
 
 
         <section class="card card-strong settings-card" aria-label="Impostazioni e azioni rapide">
@@ -90,13 +104,13 @@
             <div class="theme-strip" aria-label="Selezione palette colori">
               <div class="theme-strip-label">Palette colore</div>
               <div class="theme-options" role="radiogroup" aria-label="Scegli la palette dell'app">
-                <button class="theme-option active" id="themeSalvia" type="button" data-theme="salvia" role="radio" aria-checked="true">
+                <button class="theme-option active" id="themeEmerald" type="button" data-theme="emerald" role="radio" aria-checked="true">
                   <span class="theme-swatches" aria-hidden="true">
                     <span class="sw1"></span><span class="sw2"></span><span class="sw3"></span>
                   </span>
                   <span class="theme-copy">
-                    <strong>Salvia</strong>
-                    <small>crema · tortora</small>
+                    <strong>Smeraldo</strong>
+                    <small>menta · brillante</small>
                   </span>
                 </button>
                 <button class="theme-option" id="themeCipria" type="button" data-theme="cipria" role="radio" aria-checked="false">
