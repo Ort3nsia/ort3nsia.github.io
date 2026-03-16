@@ -22,6 +22,7 @@
     };
 
     let currentView = "today";
+    let lastPrimaryView = "today";
     let currentSectionFilter = "all";
     let currentTheme = "emerald";
     let saveToastTimer = null;
@@ -42,6 +43,7 @@
       todayView: document.getElementById("todayView"),
       historyView: document.getElementById("historyView"),
       massageView: document.getElementById("massageView"),
+      settingsView: document.getElementById("settingsView"),
       massageQuickNav: document.getElementById("massageQuickNav"),
       massageContainer: document.getElementById("massageContainer"),
       lastCompletedBox: document.getElementById("lastCompletedBox"),
@@ -49,6 +51,9 @@
       todayBtn: document.getElementById("todayBtn"),
       historyBtn: document.getElementById("historyBtn"),
       massageBtn: document.getElementById("massageBtn"),
+      settingsTopBtn: document.getElementById("settingsTopBtn"),
+      settingsTopLabel: document.getElementById("settingsTopLabel"),
+      settingsTopIcon: document.getElementById("settingsTopIcon"),
       completeAllBtn: document.getElementById("completeAllBtn"),
       resetBtn: document.getElementById("resetBtn"),
       exportBtn: document.getElementById("exportBtn"),
@@ -280,21 +285,37 @@ function applyTheme(showToast = false) {
       };
     }
 
+    function updateSettingsButton() {
+      const isSettings = currentView === "settings";
+      elements.settingsTopBtn.classList.toggle("active", isSettings);
+      elements.settingsTopBtn.setAttribute("aria-pressed", String(isSettings));
+      elements.settingsTopBtn.setAttribute("aria-label", isSettings ? "Chiudi impostazioni" : "Apri impostazioni");
+      elements.settingsTopLabel.textContent = isSettings ? "Chiudi" : "Impostazioni";
+      elements.settingsTopIcon.textContent = isSettings ? "✕" : "⚙️";
+    }
+
     function setView(view) {
       currentView = view;
+
+      if (view !== "settings") {
+        lastPrimaryView = view;
+      }
 
       const todayActive = view === "today";
       const historyActive = view === "history";
       const massageActive = view === "massage";
+      const settingsActive = view === "settings";
 
       elements.todayView.classList.toggle("active", todayActive);
       elements.historyView.classList.toggle("active", historyActive);
       elements.massageView.classList.toggle("active", massageActive);
+      elements.settingsView.classList.toggle("active", settingsActive);
 
       elements.todayBtn.classList.toggle("active", todayActive);
       elements.historyBtn.classList.toggle("active", historyActive);
       elements.massageBtn.classList.toggle("active", massageActive);
 
+      updateSettingsButton();
 
       if (historyActive) renderHistory();
       if (massageActive) renderMassage();
@@ -743,6 +764,7 @@ function applyTheme(showToast = false) {
     // -------------------------------
     function renderAll() {
       renderThemeOptions();
+      updateSettingsButton();
       renderHeader();
       renderSectionFilters();
       renderSections();
@@ -758,6 +780,13 @@ function applyTheme(showToast = false) {
       elements.todayBtn.addEventListener("click", () => setView("today"));
       elements.historyBtn.addEventListener("click", () => setView("history"));
       elements.massageBtn.addEventListener("click", () => setView("massage"));
+      elements.settingsTopBtn.addEventListener("click", () => {
+        if (currentView === "settings") {
+          setView(lastPrimaryView || "today");
+          return;
+        }
+        setView("settings");
+      });
       elements.themeEmerald.addEventListener("click", () => {
         currentTheme = "emerald";
         applyTheme(true);

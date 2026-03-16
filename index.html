@@ -21,7 +21,13 @@
   <div class="app">
     <div class="topbar">
       <header class="hero" aria-label="Intestazione checklist">
-        <div class="eyebrow">SPA Reception · Uso giornaliero</div>
+        <div class="hero-head">
+          <div class="eyebrow">SPA Reception · Uso giornaliero</div>
+          <button class="settings-top-btn" id="settingsTopBtn" type="button" aria-label="Apri impostazioni" aria-pressed="false">
+            <span class="settings-top-icon" id="settingsTopIcon" aria-hidden="true">⚙️</span>
+            <span class="settings-top-label" id="settingsTopLabel">Impostazioni</span>
+          </button>
+        </div>
         <h1>Checklist SPA Giornaliera</h1>
         <div class="subline">
           <span id="currentDateLabel">—</span>
@@ -40,7 +46,7 @@
         </div>
 
         <div class="hero-note">
-          Navigazione rapida in basso per <strong>Oggi</strong>, <strong>Storico</strong> e <strong>Massaggio</strong>.
+          Navigazione rapida in basso per <strong>Oggi</strong>, <strong>Storico</strong> e <strong>Massaggio</strong>. Le <strong>Impostazioni</strong> si aprono dal pulsante in alto a destra.
         </div>
       </header>
     </div>
@@ -92,11 +98,45 @@
         </section>
 
 
-        <section class="card card-strong settings-card" aria-label="Impostazioni e azioni rapide">
+      </section>
+
+      <section id="massageView" class="view" aria-label="Vista sequenza massaggio">
+        <div class="card card-strong massage-overview">
+          <div class="section-head" style="margin-bottom:0;">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Sequenza massaggio</h2>
+              <div class="section-sub">Promemoria rapido del procedimento, separato dalla checklist operativa giornaliera.</div>
+            </div>
+          </div>
+          <p class="massage-intro">
+            Questa sezione è pensata come guida consultabile al volo durante il turno, con i passaggi ordinati in modo lineare e leggibile da iPhone.
+          </p>
+          <nav id="massageQuickNav" class="massage-mini-nav" aria-label="Naviga tra i passaggi del massaggio"></nav>
+        </div>
+
+        <section id="massageContainer" class="massage-grid" aria-label="Promemoria sequenza del massaggio"></section>
+      </section>
+
+      <section id="historyView" class="view" aria-label="Vista storico">
+        <div class="card card-strong">
+          <div class="section-head">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Storico completo</h2>
+              <div class="section-sub">
+                Salva automaticamente checklist, orari e note del giorno precedente al cambio data.
+              </div>
+            </div>
+          </div>
+          <div id="historyList" class="history-list"></div>
+        </div>
+      </section>
+
+      <section id="settingsView" class="view" aria-label="Vista impostazioni">
+        <div class="card card-strong settings-card" aria-label="Impostazioni e azioni rapide">
           <div class="section-head">
             <div class="section-title-wrap">
               <h2 class="section-title">Impostazioni</h2>
-              <div class="section-sub">Personalizza l'app e gestisci le azioni generali da questa area dedicata.</div>
+              <div class="section-sub">Personalizza l'app e gestisci qui le azioni generali, separate dalla navigazione principale.</div>
             </div>
           </div>
 
@@ -134,38 +174,6 @@
               <button class="soft-btn" id="exportBtn" type="button">Esporta dati</button>
             </div>
           </div>
-        </section>
-
-      </section>
-
-      <section id="massageView" class="view" aria-label="Vista sequenza massaggio">
-        <div class="card card-strong massage-overview">
-          <div class="section-head" style="margin-bottom:0;">
-            <div class="section-title-wrap">
-              <h2 class="section-title">Sequenza massaggio</h2>
-              <div class="section-sub">Promemoria rapido del procedimento, separato dalla checklist operativa giornaliera.</div>
-            </div>
-          </div>
-          <p class="massage-intro">
-            Questa sezione è pensata come guida consultabile al volo durante il turno, con i passaggi ordinati in modo lineare e leggibile da iPhone.
-          </p>
-          <nav id="massageQuickNav" class="massage-mini-nav" aria-label="Naviga tra i passaggi del massaggio"></nav>
-        </div>
-
-        <section id="massageContainer" class="massage-grid" aria-label="Promemoria sequenza del massaggio"></section>
-      </section>
-
-      <section id="historyView" class="view" aria-label="Vista storico">
-        <div class="card card-strong">
-          <div class="section-head">
-            <div class="section-title-wrap">
-              <h2 class="section-title">Storico completo</h2>
-              <div class="section-sub">
-                Salva automaticamente checklist, orari e note del giorno precedente al cambio data.
-              </div>
-            </div>
-          </div>
-          <div id="historyList" class="history-list"></div>
         </div>
       </section>
 
