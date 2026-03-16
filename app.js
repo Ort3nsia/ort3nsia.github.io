@@ -823,14 +823,32 @@ function applyTheme(showToast = false) {
 
 
 
-function registerServiceWorker() {
-  if (!('serviceWorker' in navigator)) return;
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./service-worker.js').catch(() => {
-      // Nessun blocco: l'app continua a funzionare anche senza service worker.
-    });
-  });
-}
+    async function cleanupOldServiceWorkers() {
+      if (!('serviceWorker' in navigator)) return;
+
+      const cleanupKey = 'spaChecklist.swCleanupDone';
+
+      // Evita di rifare la pulizia a ogni apertura
+      if (localStorage.getItem(cleanupKey) === '1') return;
+
+      try {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+
+        for (const registration of registrations) {
+          await registration.unregister();
+        }
+
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map((name) => caches.delete(name)));
+        }
+
+        localStorage.setItem(cleanupKey, '1');
+        console.log('Service worker e cache rimossi con successo.');
+      } catch (error) {
+        console.warn('Pulizia service worker/cache non riuscita:', error);
+      }
+    }
 
     // -------------------------------
     // Init
@@ -841,7 +859,8 @@ function registerServiceWorker() {
       ensureCurrentDay();
       bindEvents();
       renderAll();
-      registerServiceWorker();
+      cleanupOldServiceWorkers();
     }
+
 
     init();
