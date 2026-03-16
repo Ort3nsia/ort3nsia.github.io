@@ -227,26 +227,26 @@
 
     .chip-row {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-      width: 100%;
-      max-width: 100%;
-      overflow: hidden;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      display: none;
     }
 
     .chip {
-      white-space: normal;
+      white-space: nowrap;
       min-height: 42px;
-      padding: 10px 14px;
+      padding: 0 14px;
       border-radius: 999px;
       background: rgba(140, 115, 88, 0.09);
       color: var(--accent-strong);
       font-weight: 700;
       border: 1px solid transparent;
       transition: var(--transition);
-      max-width: 100%;
-      text-align: center;
-      line-height: 1.2;
     }
 
     .chip.active {
@@ -598,6 +598,137 @@
       white-space: nowrap;
     }
 
+
+    .massage-overview {
+      display: grid;
+      gap: 12px;
+    }
+
+    .massage-intro {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .massage-mini-nav {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+      margin-top: 4px;
+    }
+
+    .massage-mini-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .massage-mini-nav a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(140, 115, 88, 0.09);
+      color: var(--accent-strong);
+      font-weight: 700;
+      white-space: nowrap;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .massage-mini-nav a:active {
+      transform: scale(0.985);
+    }
+
+    .massage-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .massage-step-card {
+      scroll-margin-top: 124px;
+      overflow: hidden;
+    }
+
+    .massage-step-top {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+    }
+
+    .massage-step-no {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-weight: 800;
+      box-shadow: inset 0 0 0 1px rgba(140, 115, 88, 0.08);
+    }
+
+    .massage-step-info {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+    }
+
+    .massage-step-title {
+      margin: 0;
+      font-size: 1.02rem;
+      letter-spacing: -0.01em;
+    }
+
+    .massage-step-sub {
+      color: var(--muted);
+      font-size: 0.91rem;
+    }
+
+    .massage-list,
+    .massage-sublist {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .massage-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .massage-list li::marker,
+    .massage-sublist li::marker {
+      color: var(--accent-strong);
+    }
+
+    .massage-line {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .massage-sublist {
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+    }
+
+    .massage-footer-note {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(140, 115, 88, 0.08);
+      color: var(--accent-strong);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+
     .sticky-bar {
       position: fixed;
       left: 0;
@@ -622,7 +753,7 @@
       box-shadow: var(--shadow);
       padding: 10px;
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 8px;
     }
 
@@ -635,7 +766,7 @@
       place-items: center;
       gap: 4px;
       padding: 8px 6px;
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 800;
       text-align: center;
       transition: var(--transition);
@@ -689,7 +820,7 @@
       }
 
       .sticky-inner {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(6, 1fr);
       }
 
       .nav-btn {
@@ -726,6 +857,7 @@
           <div class="segmented" role="tablist" aria-label="Vista principale">
             <button id="todayTabTop" class="active" type="button" aria-selected="true">Oggi</button>
             <button id="historyTabTop" type="button" aria-selected="false">Storico</button>
+            <button id="massageTabTop" type="button" aria-selected="false">Massaggio</button>
           </div>
         </div>
       </header>
@@ -776,6 +908,24 @@
             Una volta aggiunta, si apre in modo rapido dalla Home ed è più comoda durante il lavoro.
           </div>
         </section>
+
+      </section>
+
+      <section id="massageView" class="view" aria-label="Vista sequenza massaggio">
+        <div class="card card-strong massage-overview">
+          <div class="section-head" style="margin-bottom:0;">
+            <div class="section-title-wrap">
+              <h2 class="section-title">Sequenza massaggio</h2>
+              <div class="section-sub">Promemoria rapido del procedimento, separato dalla checklist operativa giornaliera.</div>
+            </div>
+          </div>
+          <p class="massage-intro">
+            Questa sezione è pensata come guida consultabile al volo durante il turno, con i passaggi ordinati in modo lineare e leggibile da iPhone.
+          </p>
+          <nav id="massageQuickNav" class="massage-mini-nav" aria-label="Naviga tra i passaggi del massaggio"></nav>
+        </div>
+
+        <section id="massageContainer" class="massage-grid" aria-label="Promemoria sequenza del massaggio"></section>
       </section>
 
       <section id="historyView" class="view" aria-label="Vista storico">
@@ -806,6 +956,10 @@
         <span class="icon">🗂️</span>
         <span>Storico</span>
       </button>
+      <button class="nav-btn" id="massageBtn" type="button">
+        <span class="icon">💆</span>
+        <span>Massaggio</span>
+      </button>
       <button class="nav-btn" id="completeAllBtn" type="button">
         <span class="icon">✓</span>
         <span>Tutto</span>
@@ -828,7 +982,7 @@
       - Un solo file HTML
       - Salvataggio automatico con localStorage
       - Reset giornaliero basato sulla data locale del dispositivo
-      - Storico ultimi 30 giorni
+      - Storico completo
       - Export JSON + CSV
       - Design mobile-first ottimizzato per iPhone
       ============================================================
@@ -896,7 +1050,121 @@
       }))
     );
 
+
     const TOTAL_TASKS = TASKS.length;
+
+    const MASSAGE_SEQUENCE = [
+      {
+        id: "preparazione-arti-inferiori",
+        title: "Preparazione arti inferiori",
+        subtitle: "Apertura iniziale e oleazione",
+        steps: [
+          {
+            line: "Apertura delle stazioni linfatiche con olio essenziale",
+            details: ["tendine di Achille", "cavo popliteo"]
+          },
+          {
+            line: "Oleazione",
+            details: ["cocottina al centro dei piedi"]
+          }
+        ]
+      },
+      {
+        id: "prima-gamba",
+        title: "Prima gamba",
+        subtitle: "Sequenza completa sul primo arto",
+        steps: [
+          { line: "Convogliamento a farfalla ×2" },
+          { line: "Rotolini / pettine alla coscia" },
+          { line: "Convogliamento" },
+          { line: "Impastamento coscia" },
+          { line: "Convogliamento" },
+          { line: "Pompaggio polpacci ×2" },
+          { line: "Fontana polpacci" },
+          { line: "Convogliamento" },
+          { line: "Manovre del piede" },
+          { line: "Sollevamento gamba" }
+        ]
+      },
+      {
+        id: "passaggio-altra-gamba",
+        title: "Passaggio all’altra gamba",
+        subtitle: "Transizione tra i due arti inferiori",
+        steps: [
+          { line: "Yin e Yang" },
+          { line: "Ripetere lo stesso procedimento sull’altra gamba" }
+        ]
+      },
+      {
+        id: "parte-superiore-corpo",
+        title: "Parte superiore del corpo",
+        subtitle: "Apertura, oleazione e lavoro cervicale",
+        steps: [
+          {
+            line: "Apertura delle stazioni linfatiche",
+            details: ["polso", "zona clavicolare"]
+          },
+          { line: "Oleazione" },
+          { line: "Massaggio del trapezio" },
+          { line: "Ripetere a destra e a sinistra" },
+          { line: "Spinta sugli omeri" },
+          { line: "Massaggio della parte retronucale fino alle fossette" },
+          { line: "Cerchietti su tempie e testa" }
+        ]
+      },
+      {
+        id: "cambio-posizione-cliente",
+        title: "Cambio posizione del cliente",
+        subtitle: "Rotazione controllata",
+        steps: [
+          { line: "Yin e Yang" },
+          { line: "Far girare il cliente" }
+        ]
+      },
+      {
+        id: "arti-inferiori-seconda-posizione",
+        title: "Arti inferiori in seconda posizione",
+        subtitle: "Prima gamba e poi ripetizione sull’altra",
+        steps: [
+          { line: "Prima gamba" },
+          { line: "Convogliamento gamba" },
+          { line: "Rotolini / pettine" },
+          { line: "Convogliamento" },
+          { line: "Impastamento coscia" },
+          { line: "Convogliamento" },
+          { line: "Pompaggio gamba" },
+          { line: "Convogliamento" },
+          { line: "Rotolini / pettine polpaccio" },
+          { line: "Convogliamento" },
+          { line: "Impastamento polpaccio" },
+          { line: "Convogliamento" },
+          { line: "Passaggio all’altra gamba" },
+          { line: "Yin e Yang" },
+          { line: "Ripetere lo stesso procedimento sull’altra gamba" }
+        ]
+      },
+      {
+        id: "schiena",
+        title: "Schiena",
+        subtitle: "Lavoro centrale lungo la colonna",
+        steps: [
+          { line: "Pettine lungo la colonna" },
+          { line: "Movimenti a infinito, piccoli e grandi, dall’alto verso il basso" },
+          { line: "Lavorare il trapezio" },
+          { line: "Ripetere dall’altra parte" }
+        ]
+      },
+      {
+        id: "chiusura",
+        title: "Chiusura",
+        subtitle: "Fase finale del trattamento",
+        steps: [
+          { line: "Coprire il cliente sulla schiena" },
+          { line: "Yin e Yang" },
+          { line: "Fine" }
+        ]
+      }
+    ];
 
     // -------------------------------
     // Chiavi localStorage
@@ -941,15 +1209,20 @@
       sectionFilters: document.getElementById("sectionFilters"),
       todayView: document.getElementById("todayView"),
       historyView: document.getElementById("historyView"),
+      massageView: document.getElementById("massageView"),
+      massageQuickNav: document.getElementById("massageQuickNav"),
+      massageContainer: document.getElementById("massageContainer"),
       lastCompletedBox: document.getElementById("lastCompletedBox"),
       lastCompletedText: document.getElementById("lastCompletedText"),
       todayBtn: document.getElementById("todayBtn"),
       historyBtn: document.getElementById("historyBtn"),
+      massageBtn: document.getElementById("massageBtn"),
       completeAllBtn: document.getElementById("completeAllBtn"),
       resetBtn: document.getElementById("resetBtn"),
       exportBtn: document.getElementById("exportBtn"),
       todayTabTop: document.getElementById("todayTabTop"),
-      historyTabTop: document.getElementById("historyTabTop")
+      historyTabTop: document.getElementById("historyTabTop"),
+      massageTabTop: document.getElementById("massageTabTop")
     };
 
     // -------------------------------
@@ -1090,7 +1363,7 @@
         state.history.unshift(snapshot);
       }
 
-      // Mantieni solo ultimi 30 giorni
+      // Mantieni lo storico completo ordinato dal più recente
       state.history = state.history
         .sort((a, b) => b.date.localeCompare(a.date));
     }
@@ -1147,19 +1420,28 @@
       currentView = view;
 
       const todayActive = view === "today";
+      const historyActive = view === "history";
+      const massageActive = view === "massage";
+
       elements.todayView.classList.toggle("active", todayActive);
-      elements.historyView.classList.toggle("active", !todayActive);
+      elements.historyView.classList.toggle("active", historyActive);
+      elements.massageView.classList.toggle("active", massageActive);
 
       elements.todayBtn.classList.toggle("active", todayActive);
-      elements.historyBtn.classList.toggle("active", !todayActive);
+      elements.historyBtn.classList.toggle("active", historyActive);
+      elements.massageBtn.classList.toggle("active", massageActive);
 
       elements.todayTabTop.classList.toggle("active", todayActive);
-      elements.historyTabTop.classList.toggle("active", !todayActive);
+      elements.historyTabTop.classList.toggle("active", historyActive);
+      elements.massageTabTop.classList.toggle("active", massageActive);
 
       elements.todayTabTop.setAttribute("aria-selected", String(todayActive));
-      elements.historyTabTop.setAttribute("aria-selected", String(!todayActive));
+      elements.historyTabTop.setAttribute("aria-selected", String(historyActive));
+      elements.massageTabTop.setAttribute("aria-selected", String(massageActive));
 
-      if (!todayActive) renderHistory();
+      if (historyActive) renderHistory();
+      if (massageActive) renderMassage();
+
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
@@ -1592,6 +1874,51 @@
       document.getElementById("manifestLink").setAttribute("href", url);
     }
 
+
+    // -------------------------------
+    // Sequenza massaggio
+    // -------------------------------
+    function renderMassage() {
+      elements.massageQuickNav.innerHTML = MASSAGE_SEQUENCE.map((step, index) => `
+        <a href="#massage-${escapeHtml(step.id)}">${index + 1}. ${escapeHtml(step.title)}</a>
+      `).join("");
+
+      elements.massageContainer.innerHTML = MASSAGE_SEQUENCE.map((step, index) => `
+        <section class="card massage-step-card" id="massage-${escapeHtml(step.id)}" aria-label="${escapeHtml(step.title)}">
+          <div class="massage-step-top">
+            <div class="massage-step-no">${index + 1}</div>
+            <div class="massage-step-info">
+              <h3 class="massage-step-title">${escapeHtml(step.title)}</h3>
+              <div class="massage-step-sub">${escapeHtml(step.subtitle)}</div>
+            </div>
+          </div>
+
+          <ol class="massage-list">
+            ${step.steps.map(item => `
+              <li>
+                <div class="massage-line">${escapeHtml(item.line)}</div>
+                ${
+                  item.details && item.details.length
+                    ? `
+                      <ul class="massage-sublist">
+                        ${item.details.map(detail => `<li>${escapeHtml(detail)}</li>`).join("")}
+                      </ul>
+                    `
+                    : ""
+                }
+              </li>
+            `).join("")}
+          </ol>
+
+          ${index === MASSAGE_SEQUENCE.length - 1 ? `
+            <div class="massage-footer-note">
+              Promemoria consultivo: la sequenza è sempre disponibile qui come riferimento rapido, separata dalla checklist giornaliera.
+            </div>
+          ` : ""}
+        </section>
+      `).join("");
+    }
+
     // -------------------------------
     // Render completo
     // -------------------------------
@@ -1600,6 +1927,7 @@
       renderSectionFilters();
       renderSections();
       renderNotes();
+      renderMassage();
       if (currentView === "history") renderHistory();
     }
 
@@ -1609,8 +1937,10 @@
     function bindEvents() {
       elements.todayBtn.addEventListener("click", () => setView("today"));
       elements.historyBtn.addEventListener("click", () => setView("history"));
+      elements.massageBtn.addEventListener("click", () => setView("massage"));
       elements.todayTabTop.addEventListener("click", () => setView("today"));
       elements.historyTabTop.addEventListener("click", () => setView("history"));
+      elements.massageTabTop.addEventListener("click", () => setView("massage"));
 
       elements.completeAllBtn.addEventListener("click", markAllCompleted);
       elements.resetBtn.addEventListener("click", manualReset);
@@ -1651,6 +1981,4 @@
     init();
   </script>
 </body>
-
 </html>
-
