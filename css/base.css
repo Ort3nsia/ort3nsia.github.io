@@ -1,0 +1,131 @@
+/* Base reset e variabili condivise */
+:root {
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+
+  --radius-xs: 0.65rem;
+  --radius-sm: 0.9rem;
+  --radius-md: 1.15rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 1.85rem;
+  --radius-pill: 999px;
+
+  --shadow-soft: 0 12px 32px rgba(16, 24, 40, 0.06);
+  --shadow-card: 0 10px 24px rgba(16, 24, 40, 0.05);
+  --shadow-elevated: 0 20px 48px rgba(16, 24, 40, 0.12);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+
+  --color-primary: #159a7f;
+  --color-secondary: #5ac7ad;
+  --color-accent: #0f6f5c;
+  --color-bg: #f4fbf8;
+  --color-surface: #ffffff;
+  --color-border: #d8eee6;
+  --color-badge-bg: #e8f8f2;
+  --color-badge-text: #0f6f5c;
+  --color-text: #182230;
+  --color-text-muted: #5c6677;
+  --color-progress-bg: rgba(21, 154, 127, 0.12);
+  --color-overlay: rgba(12, 18, 28, 0.44);
+  --color-danger: #c93e4b;
+  --color-success: #1c8f68;
+  --color-warning: #c77c1a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.9), transparent 35%),
+    linear-gradient(180deg, var(--color-bg), #f8fafc 88%);
+}
+
+body.has-modal-open {
+  overflow: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-primary) 38%, white);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
