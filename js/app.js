@@ -9,6 +9,7 @@ import {
   markAllTasksCompleted,
   resetDayTasks,
   setActivePalette,
+  setDayNotes,
   setTaskCompletion,
 } from "./state.js";
 import { loadAppState, saveAppState } from "./storage.js";
@@ -159,6 +160,16 @@ function handleInputChange(event) {
   commit();
 }
 
+function handleTextInput(event) {
+  const textarea = event.target.closest('[data-action="update-notes"]');
+  if (!textarea) {
+    return;
+  }
+
+  setDayNotes(state, textarea.value);
+  persistState();
+}
+
 function handleKeyboardShortcuts(event) {
   if (event.key !== "Escape") {
     return;
@@ -179,6 +190,7 @@ function handleKeyboardShortcuts(event) {
 function init() {
   root.addEventListener("click", handleActionClick);
   root.addEventListener("change", handleInputChange);
+  root.addEventListener("input", handleTextInput);
   window.addEventListener("focus", ensureCurrentDayIsFresh);
   document.addEventListener("visibilitychange", () => {
     if (!document.hidden) {

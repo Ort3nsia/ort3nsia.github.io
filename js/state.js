@@ -20,6 +20,10 @@ function addDays(dateIso, amount) {
   return getTodayISODate(date);
 }
 
+function normalizeNotes(value) {
+  return typeof value === "string" ? value : "";
+}
+
 function createTaskRecord(taskDefinition, existingTask = null) {
   const completed = Boolean(existingTask?.completed);
 
@@ -59,6 +63,7 @@ export function calculateDayStats(day) {
 export function createEmptyDay(dateIso) {
   const day = {
     date: dateIso,
+    notes: "",
     tasks: normalizeTasks(),
   };
 
@@ -71,6 +76,7 @@ export function createEmptyDay(dateIso) {
 function normalizeDay(dateIso, dayValue) {
   const normalized = {
     date: dateIso,
+    notes: normalizeNotes(dayValue?.notes),
     tasks: normalizeTasks(dayValue?.tasks),
   };
 
@@ -167,6 +173,11 @@ export function setTaskCompletion(state, taskId, completed, dateIso = state.curr
   task.completed = Boolean(completed);
   task.completedAt = task.completed ? new Date().toISOString() : null;
   day.stats = calculateDayStats(day);
+}
+
+export function setDayNotes(state, notes, dateIso = state.currentDay) {
+  const day = ensureDay(state, dateIso);
+  day.notes = normalizeNotes(notes);
 }
 
 export function markAllTasksCompleted(state, dateIso = state.currentDay) {

@@ -38,10 +38,7 @@ export const MASSAGE_GUIDE = [
     number: 3,
     title: "Passaggio all’altra gamba",
     subtitle: "Transizione tra i due arti inferiori",
-    steps: [
-      "Yin e Yang",
-      "Ripetere lo stesso procedimento sull’altra gamba",
-    ],
+    steps: ["Yin e Yang", "Ripetere lo stesso procedimento sull’altra gamba"],
   },
   {
     id: "parte-superiore-corpo",
@@ -65,10 +62,7 @@ export const MASSAGE_GUIDE = [
     number: 5,
     title: "Cambio posizione del cliente",
     subtitle: "Rotazione controllata",
-    steps: [
-      "Yin e Yang",
-      "Far girare il cliente",
-    ],
+    steps: ["Yin e Yang", "Far girare il cliente"],
   },
   {
     id: "arti-inferiori-seconda-posizione",
@@ -110,10 +104,6 @@ export const MASSAGE_GUIDE = [
     number: 8,
     title: "Chiusura",
     subtitle: "Fase finale del trattamento",
-    steps: [
-      "Coprire il cliente sulla schiena",
-      "Yin e Yang",
-      "Fine",
-    ],
+    steps: ["Coprire il cliente sulla schiena", "Yin e Yang", "Fine"],
   },
 ];

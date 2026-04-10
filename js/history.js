@@ -29,6 +29,7 @@ export function getHistoryRows(daysMap) {
       completedCount: day.stats.completedCount,
       totalCount: day.stats.totalCount,
       percent: day.stats.percent,
+      hasNotes: Boolean(day.notes?.trim()),
       status,
     };
   });

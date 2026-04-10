@@ -155,6 +155,35 @@ function renderTodaySection(section) {
   `;
 }
 
+function renderNotesCard(day) {
+  const notes = day.notes ?? "";
+  const notesCount = notes.trim().length;
+
+  return `
+    <section class="surface-card notes-card">
+      <div class="section-head">
+        <div class="section-title-group">
+          <div class="section-title-row">
+            <h2 class="section-title">Note del giorno</h2>
+            ${notesCount > 0 ? '<span class="status-chip status-chip--in-progress">Salvate</span>' : '<span class="status-chip status-chip--not-started">Vuote</span>'}
+          </div>
+          <p class="section-count">Queste note vengono salvate nel giorno corrente e restano nello storico.</p>
+        </div>
+        <div class="metric-badge">${notesCount} caratteri</div>
+      </div>
+
+      <label class="sr-only" for="daily-notes">Note del giorno</label>
+      <textarea
+        id="daily-notes"
+        class="notes-textarea"
+        data-action="update-notes"
+        placeholder="Scrivi qui promemoria, anomalie, prodotti mancanti, clienti particolari o qualsiasi nota utile per oggi..."
+      >${escapeHtml(notes)}</textarea>
+      <p class="inline-note">Salvataggio automatico immediato in locale.</p>
+    </section>
+  `;
+}
+
 function renderTodayPanel(state, uiState) {
   const day = getCurrentDay(state);
   const filteredSections = getSectionsWithProgress(day).filter((section) => {
@@ -173,6 +202,8 @@ function renderTodayPanel(state, uiState) {
       <div class="section-list">
         ${filteredSections.length > 0 ? filteredSections.map(renderTodaySection).join("") : '<div class="empty-state">Nessuna sezione trovata per questo filtro.</div>'}
       </div>
+
+      ${renderNotesCard(day)}
     </section>
   `;
 }
@@ -211,6 +242,7 @@ function renderHistoryPanel(state) {
                     <div class="history-metrics">
                       <span class="metric-badge">${row.completedCount}/${row.totalCount} completate</span>
                       <span class="metric-badge">${row.percent}%</span>
+                      ${row.hasNotes ? '<span class="metric-badge">Con note</span>' : ""}
                     </div>
                     <span class="muted">Apri dettaglio</span>
                   </div>
@@ -396,6 +428,19 @@ function renderHistoryDetailModal(state, dateIso) {
               Chiudi
             </button>
           </div>
+
+          ${day.notes?.trim()
+            ? `
+              <section class="surface-card detail-card">
+                <div class="panel-header">
+                  <h3>Note salvate</h3>
+                  <p class="muted">Appunti registrati per questa giornata.</p>
+                </div>
+                <div class="note-preview">${escapeHtml(day.notes)}</div>
+              </section>
+            `
+            : ""
+          }
 
           <div class="section-list">
             ${sections

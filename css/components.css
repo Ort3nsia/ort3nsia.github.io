@@ -11,7 +11,8 @@
 .history-card,
 .massage-card,
 .settings-card,
-.detail-card {
+.detail-card,
+.notes-card {
   padding: 1rem;
 }
 
@@ -293,6 +294,36 @@
 
 .task-item.is-complete .task-title {
   color: color-mix(in srgb, var(--color-text) 78%, white);
+}
+
+.notes-card {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.notes-textarea {
+  width: 100%;
+  min-height: 140px;
+  resize: vertical;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--color-text);
+  line-height: 1.5;
+}
+
+.notes-textarea::placeholder {
+  color: color-mix(in srgb, var(--color-text-muted) 82%, white);
+}
+
+.note-preview {
+  padding: 0.95rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: rgba(255, 255, 255, 0.78);
+  white-space: pre-wrap;
+  line-height: 1.55;
 }
 
 .tabbar-inner.surface-card {
